@@ -6,25 +6,33 @@ class CustomFormField extends StatelessWidget {
   const CustomFormField({
     super.key,
     required this.hintText,
-    required this.text,
-    required this.onSave,
-    required this.validator,
+    required this.Iconn,
+    required this.myController,
+    required this.labelText,
   });
   final String hintText;
-  final String text;
-  final String? Function(String?) onSave;
-  final String? Function(String?) validator;
+
+  final IconData Iconn;
+  final TextEditingController myController;
+  final String labelText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: myController,
       decoration: InputDecoration(
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          label: Container(
+            margin: EdgeInsets.symmetric(horizontal: 9),
+            child: Text(labelText),
+          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 3),
           hintText: hintText,
           hintStyle: TextStyle(
             color: AppColors.grayColor,
           ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+          suffixIcon: Icon(Iconn),
           fillColor: AppColors.whiteColor),
-      validator: validator,
-      onSaved: onSave,
     );
   }
 }
