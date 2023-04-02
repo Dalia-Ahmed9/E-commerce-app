@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 import 'package:new_e_commerce/model/utils/themes.dart';
 import 'package:new_e_commerce/view/counter.dart';
 
+import 'controller/auth/login.dart';
+import 'controller/auth/newLogin.dart';
 import 'controller/bindings/bindings.dart';
 import 'firebase_options.dart';
-import 'view/auth-view/LoginScreen.dart';
+import 'view/Home/Home_Screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: Binding(),
       theme: themes(),
-      home: LoginScreen(),
+      home: LoginScreeen(),
     );
   }
 }

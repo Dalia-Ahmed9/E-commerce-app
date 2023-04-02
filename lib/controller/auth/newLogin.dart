@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controller/auth/auth_google.dart';
 import '../../model/ReusedComponent/CustomButton.dart';
-import '../../model/ReusedComponent/Form.dart';
 import '../../model/ReusedComponent/Text.dart';
 import '../../model/utils/Colors.dart';
+import 'auth_google.dart';
 
-class LoginScreen extends GetWidget<authWithGoogle> {
-  LoginScreen({super.key});
+class LoginScreeen extends GetWidget<authWithGoogle> {
+  LoginScreeen({super.key});
   final GlobalKey<FormState> globalKey = GlobalKey();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 50, right: 30, left: 30),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50, right: 30, left: 30),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Row(
@@ -58,7 +59,8 @@ class LoginScreen extends GetWidget<authWithGoogle> {
                 child: Column(
                   children: [
                     TextField(
-                      onSubmitted: (value) => controller.email,
+                      controller: emailController,
+                      // onSubmitted: (value) => controller.email,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: "User Email",
@@ -68,7 +70,8 @@ class LoginScreen extends GetWidget<authWithGoogle> {
                       height: 30,
                     ),
                     TextField(
-                      onSubmitted: (value) => controller.password,
+                      controller: passwordController,
+                      //onSubmitted: (value) => controller.password,
                       obscureText: true,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -88,15 +91,16 @@ class LoginScreen extends GetWidget<authWithGoogle> {
                     SizedBox(
                       height: 40,
                     ),
-                    CustomButton(
-                      text: 'Login in',
-                      width: MediaQuery.of(context).size.width / 0.5,
-                      ontap: () {
-                        globalKey.currentState!.save();
-                        if (globalKey.currentState!.validate()) {
-                          controller.signInWithEmailAndPassword();
-                        }
+                    GestureDetector(
+                      onTap: () {
+                        controller.SignIn(emailController.text.trim(),
+                            passwordController.text.trim());
                       },
+                      child: CustomButton(
+                        text: 'Login in',
+                        width: MediaQuery.of(context).size.width / 0.5,
+                        ontap: () {},
+                      ),
                     ),
                   ],
                 ),
